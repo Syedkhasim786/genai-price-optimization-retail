@@ -11,7 +11,7 @@ stock = st.selectbox("Stock", ["low", "medium", "high"])
 
 if st.button("Optimize Price"):
 
-    url = "https://genai-price-optimization-retail.onrender.com/optimize-price"
+    url = "https://genai-price-optimization-retail-2.onrender.com/optimize-price"
 
     params = {
         "product": product,
