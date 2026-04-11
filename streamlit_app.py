@@ -22,7 +22,8 @@ if st.button("Optimize Price"):
     }
 
     response = requests.post(url, params=params)
-
+    st.write(response.text)
+    
     if response.status_code == 200:
         data = response.json()
         st.success(f"Recommended Price: ₹{data['recommended_price']}")
