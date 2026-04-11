@@ -10,23 +10,30 @@ demand = st.selectbox("Demand", ["low", "medium", "high"])
 stock = st.selectbox("Stock", ["low", "medium", "high"])
 
 if st.button("Optimize Price"):
-    
+
     url = "https://genai-price-optimization-retail.onrender.com/optimize-price"
-    
+
     params = {
         "product": product,
-        "cost": cost,
-        "competitor": competitor,
+        "cost": float(cost),
+        "competitor": float(competitor),
         "demand": demand,
         "stock": stock
     }
 
-    response = requests.post(url, params=params)
-    st.write(response.text)
-    
-    if response.status_code == 200:
-        data = response.json()
-        st.success(f"Recommended Price: ₹{data['recommended_price']}")
-        st.write(data["explanation"])
-    else:
-        st.error("Error fetching result")
+    try:
+        response = requests.post(url, params=params, timeout=30)
+
+        # 🔍 Debug info (keep this for now)
+        st.write("Status Code:", response.status_code)
+        st.write("Response:", response.text)
+
+        if response.status_code == 200:
+            data = response.json()
+            st.success(f"Recommended Price: ₹{data['recommended_price']}")
+            st.write(data["explanation"])
+        else:
+            st.error("Backend error. Check response above.")
+
+    except requests.exceptions.RequestException as e:
+        st.error(f"Connection error: {e}")
