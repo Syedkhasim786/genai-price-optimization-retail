@@ -21,7 +21,7 @@ if st.button("Optimize Price"):
         "stock": stock
     }
 
-    response = requests.post(url, params=params)
+    response = requests.post(url, json=params)
 
     if response.status_code == 200:
         data = response.json()
