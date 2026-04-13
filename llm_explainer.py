@@ -1,9 +1,7 @@
 import os
 import google.generativeai as genai
 
-# API key is loaded from environment variable GEMINI_API_KEY
-# Set this in Render dashboard → Environment → Add Variable
-genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
 
 model = genai.GenerativeModel("gemini-1.5-flash")
 
