@@ -1,5 +1,3 @@
 fastapi
-uvicorn[standard]
-openai
-pandas
-python-multipart
+uvicorn
+google-generativeai
